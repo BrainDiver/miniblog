@@ -11,7 +11,7 @@ class Category(models.Model):
         """
         String for representing the Model object.
         """
-        return self.name
+        return f'{self.name}, {self.subname}'
 
 class Blogger(models.Model):
     """
@@ -19,7 +19,7 @@ class Blogger(models.Model):
     """
     nickname = models.CharField(max_length=200)
     email = models.EmailField(unique= True)
-    date_of_birth = models.DateField(null= True, blank= True
+    date_of_birth = models.DateField(null= True, blank= True)
     about_blogger = models.TextField(max_length= 3000, help_text= 'information about bloger')
     def __str__(self):
         """
@@ -42,3 +42,5 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title
+    def display_category(self):
+        return ", ".join([categories.name for categories in self.categories.all()[:3]])
