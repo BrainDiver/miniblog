@@ -6,12 +6,12 @@ class Category(models.Model):
     Model representing an category.
     """
     name = models.CharField(max_length=20, help_text= "Enter a blog category")
-    subname = models.CharField(max_length=20, help_text = 'enter second category')
+
     def __str__(self):
         """
         String for representing the Model object.
         """
-        return f'{self.name}, {self.subname}'
+        return f'{self.name}'
 
 class Blogger(models.Model):
     """

@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Welcome to my miniblog.</h1>
+<h2>On this page you can see the latest Posts, most popular bloggers and categories.</h2>
+
+    <table>
+        <caption> Bloggers </caption>
+        {% for blogger in bloggers %}
+        <tr>
+          <td><a href="">{{blogger.nickname}}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <caption>Latest Posts</caption>
+        {% for post in posts %}
+        <tr>
+          <td><a href="">{{ post }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <caption> Categories </caption>
+        {% for category in categories %}
+        <tr>
+          <td><a href="">{{ category }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+ 
+{% endblock %}
