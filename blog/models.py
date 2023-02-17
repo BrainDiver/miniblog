@@ -11,8 +11,9 @@ class Category(models.Model):
         """
         String for representing the Model object.
         """
-        return f'{self.name}'
-
+        return self.name
+    def get_absolute_url(self):
+        return reverse('category-detail', args=[str(self.id)])
 class Blogger(models.Model):
     """
     Model representing an blogger.
@@ -44,3 +45,5 @@ class Post(models.Model):
         return self.title
     def display_category(self):
         return ", ".join([categories.name for categories in self.categories.all()[:3]])
+    def get_absolute_url(self):
+        return reverse('post-detail', args=[str(self.id)])

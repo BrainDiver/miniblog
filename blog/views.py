@@ -10,17 +10,26 @@ def index(request):
 
     return render(request, 'index.html', context={'bloggers': bloggers, 'categories': categories, 'posts': posts})
 
-#Create default class view for model Blogger
+#Create default classes view for model Blogger
 class BloggerListView(generic.ListView):
     model= Blogger
     paginate_by=10
-
-#Create default class view for model Post
+class BloggerDetailView(generic.DetailView):
+    model= Blogger
+#Create default classes view for model Post
 class PostListView(generic.ListView):
     model= Post
     paginate_by=10
-
-#Create default class view for model Category
+class PostDetailView(generic.DetailView):
+    model=Post
+#Create default classes view for model Category
 class CategoryListView(generic.ListView):
     model= Category
     paginate_by=10
+class CategoryDetailView(generic.DetailView):
+    model=Category
+    
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['category_posts']= Post.objects.filter(categories=self.kwargs['pk'])
+        return context
