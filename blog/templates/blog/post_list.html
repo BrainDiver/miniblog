@@ -5,7 +5,7 @@
     {% if post_list %}
     <ul>
       {% for post in post_list %}
-      <li><a href="">{{ post.title }}</a>({{post.blogger}})</li>
+      <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>({{post.blogger}})</li>
       {% endfor %}
     </ul>
     {% else %}

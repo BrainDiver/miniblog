@@ -36,8 +36,8 @@ class Blogger(models.Model):
 
 class Post(models.Model):
     title=models.CharField(max_length=40, help_text='Enter title for this blog')
-    blogger=models.ForeignKey(Blogger, on_delete=models.CASCADE)
-    categories=models.ManyToManyField(Category)
+    blogger=models.ForeignKey('Blogger', on_delete=models.CASCADE, related_name='bloggerposts')
+    categories=models.ManyToManyField('Category')
     content=models.TextField()
     timestamp=models.DateTimeField(auto_now_add=True)
     

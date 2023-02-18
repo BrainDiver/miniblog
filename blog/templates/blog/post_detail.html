@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+      <p><strong>{{ post.content }}</strong></p>
+        <table>
+          <tr>
+            <td>
+              <a href="{{ post.blogger.get_absolute_url }}">{{ post.blogger }}</a>
+            </td>
+
+            <td>
+              {% for post_category in post.categories.all %}
+                  <a href="{{ post_category.get_absolute_url }}">{{ post_category.name }}</a>
+              {% endfor %}
+            </td>
+            <td>
+              {{ post.timestamp }}
+            </td>
+          </tr>
+        </table>
+{% endblock %}

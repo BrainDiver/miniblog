@@ -7,7 +7,7 @@
         <caption> Bloggers </caption>
         {% for blogger in bloggers %}
         <tr>
-          <td><a href="">{{blogger.nickname}}</a></td>
+          <td><a href="{{ blogger.get_absolute_url }}">{{blogger.nickname}}</a></td>
         </tr>
         {% endfor %}
     </table>
@@ -16,7 +16,7 @@
         <caption>Latest Posts</caption>
         {% for post in posts %}
         <tr>
-          <td><a href="">{{ post }}</a></td>
+          <td><a href="{{ post.get_absolute_url }}">{{ post }}</a></td>
         </tr>
         {% endfor %}
     </table>
@@ -25,7 +25,7 @@
         <caption> Categories </caption>
         {% for category in categories %}
         <tr>
-          <td><a href="">{{ category }}</a></td>
+          <td><a href="{{ category.get_absolute_url }}">{{ category }}</a></td>
         </tr>
         {% endfor %}
     </table>

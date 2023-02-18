@@ -28,7 +28,8 @@ class CategoryListView(generic.ListView):
     paginate_by=10
 class CategoryDetailView(generic.DetailView):
     model=Category
-    
+    paginate_by=10
+
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context['category_posts']= Post.objects.filter(categories=self.kwargs['pk'])
