@@ -5,7 +5,7 @@
     {% if category_posts %}
     <ul>
        {% for post in category_posts %}
-       <li><a href="">{{ post }}</li>
+       <li><a href="{{ post.get_absolute_url }}">{{ post }}</li>
        {% endfor %}
     </ul>
     {% else %}
