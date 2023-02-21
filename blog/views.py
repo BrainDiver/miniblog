@@ -35,3 +35,12 @@ class CategoryDetailView(generic.DetailView):
         genre=Category.objects.get(id=self.kwargs['pk'])
         context['category_posts']= genre.category_post.all()[:10]
         return context
+
+def search(request):
+    if request == "POST":
+        form= request.POST.name
+        result_search_posts=Post.objects.filter(title_lower__contains= form)
+        result_search_bloggers=Blogger.objects.filter(nickname_lower__contains= form)
+        result_search_categories=Category.objects.filter(name_lower__contains= form)
+        return render(request, 'result_search.html', context={'result_search_posts': result_search_posts, 'result_search_bloggers':result_search_bloggers, 'result_search_categories': result_search_categories})
+    return render(request, 'index.html')

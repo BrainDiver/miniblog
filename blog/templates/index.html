@@ -2,7 +2,12 @@
 {% block content %}
 <h1>Welcome to my miniblog.</h1>
 <h2>On this page you can see the latest Posts, most popular bloggers and categories.</h2>
-
+    <form action="{% url 'search' %}" method="post">
+    {% csrf_token %}
+       <label for="search_id">Search</label>
+       <input id="search_id" type="text" name="search_field" value="">
+       <input type="submit" value="OK">
+    </form>
     <table>
         <caption> Bloggers </caption>
         {% for blogger in bloggers %}
