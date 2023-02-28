@@ -1,7 +1,11 @@
 {% extends "base_generic.html" %}
 {% block content %}
-    <h1>Results<h1>
-    {% if result_search_posts or result_search_categories or result_search_bloggers %}
+    <h2>Results<h2>
+    {% if maximal_match or result_search_posts or result_search_bloggers or result_search_categories %}
+        <p><strong>Maximal Match</strong></p>
+        {%for item in maximal_match %}
+        <p>{% for result in item %}<a href="{{ result.get_absolute_url }}"> {{ result }} </a> {% endfor %}</a>
+        {% endfor %}
         <table>
             <caption>Posts</caption>
             {% for post in result_search_posts %}
@@ -21,8 +25,8 @@
         </table>
   
         <table>
-            <caption>Categories</caption>
-            {% for category in result_search_categories %}
+            <caption>Categories Posts</caption>
+            {% for category in result_search_categories %}            
               <tr>
                 <td><a href="{{ category.get_absolute_url }}"> {{ category }}</a></p>
               </tr>

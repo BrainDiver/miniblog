@@ -2,7 +2,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
-from blog.models import Blogger
+from blog.models import Blogger, Coment, Post, Category
+from django.forms import ModelForm
 import datetime
 
 class SignUpForm(forms.Form):
@@ -29,3 +30,25 @@ class SignUpForm(forms.Form):
         if Blogger.objects.filter(nickname=data):
             raise forms.ValidationError(_('nickname already taken'))
         return data
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model=Coment
+        fields=['title', 'content']
+
+class AboutBloggerForm(forms.ModelForm):
+    class Meta:
+        model=Blogger
+        fields=['about_blogger',]
+
+DISPLAY_CHOICES = (
+    ("locationbox", "Display Location"),
+    ("displaybox", "Display Direction")
+)
+
+class PostForm(forms.ModelForm):
+    categories= forms.ModelMultipleChoiceField(queryset=Category.objects.all(), widget=forms.CheckboxSelectMultiple(),)
+    class Meta:
+        model=Post
+        fields=['title', 'content', 'categories']
+

@@ -9,5 +9,6 @@ urlpatterns =[
     re_path(r'^posts/(?P<pk>\d+)$', views.PostDetailView.as_view(), name='post-detail'),
     re_path(r'^categories/$', views.CategoryListView.as_view(), name='categories'), 
     re_path(r'^categories/(?P<pk>\d+$)', views.CategoryDetailView.as_view(), name='category-detail'),
-    path("search", views.search, name='search')
+    path("search/", views.search, name='search'),
+    path("my_blog/", views.my_blog, name='myblog'),
 ]

@@ -19,4 +19,30 @@
             </td>
           </tr>
         </table>
+
+        {% if user.is_authenticated %}
+        <form action="" method="post">
+        {% csrf_token %}
+            <table>
+                {{ form }}
+            </table>
+        <input type="submit" value="Submit" />
+        </form>
+        {% endif %}
+        
+        
+        {% for item in comment %}
+        <table>
+        <tr>
+          <td>{{ item.title }}</td>
+          <td>{{ item.blogger}}</td>
+        <tr>
+        <tr>
+          <td>{{ item.content }}</td>
+        </tr>
+        <tr>
+          <td>{{ item.timestamp }}</td>
+        <tr>
+        </table>
+        {% endfor %}
 {% endblock %}

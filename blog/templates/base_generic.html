@@ -21,12 +21,12 @@
           <li><a href="{% url 'posts'%}">All Posts</a></li>
           <li><a href="{% url 'bloggers' %}">All Bloggers</a></li>
           <li><a href="{% url 'categories' %}">All categories</a></li>
-          {% if user.authenticated %}
-          {# <li>User:{{ user.get_username }}</li> #}
-          <li><a href="">My blogs</a></li>
+          {% if user.is_authenticated %}
+          <li>User:{{ user.get_username }}</li>
+          <li><a href="{% url 'myblog' %}">My blog</a></li>
           <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
           {% else %}
-          {# <li><a href="{%url 'login'%}?next={{request.path}}">Login</a></li>#}
+          <li><a href="{%url 'login' %}?next={{request.path}}">Login</a></li>
           {% endif %}
       </ul>
       {% endblock %}

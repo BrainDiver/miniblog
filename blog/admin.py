@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Blogger, Post
+from .models import Category, Blogger, Post, Coment
 from typing import Set
 
 from django.contrib.auth.models import User
@@ -15,7 +15,7 @@ class PostInline(admin.StackedInline):
 @admin.register(Blogger)
 class BloggerAdmin(admin.ModelAdmin):
     list_display=('nickname', 'email', 'date_of_birth', 'id')
-    fields=['nickname', ('email', 'date_of_birth')]
+    fields=['nickname', ('email', 'date_of_birth', 'about_blogger')]
     inlines=[PostInline]
 #register model Post
 @admin.register(Post)
@@ -57,3 +57,5 @@ class CustomUserAdmin(UserAdmin):
                 form.base_fields[f].disabled = True
 
         return form
+
+admin.site.register(Coment)

@@ -5,8 +5,27 @@
       <p><strong>Email: {{ blogger.email }} </strong></p>
       <p><strong>Date of Birth: {{ blogger.date_of_birth }}</strong></p>
       <p>About Me: {{ blogger.about_blogger }} </p>
+      {% if Edit %}
+      <form action="" method="post">
+      {% csrf_token %}
+          <table>
+              {{ form_edit }}
+          </table>
+      <input type="submit" value="Edit">
+      </form>
+      
+      <form action="" method="post">
+      {% csrf_token %}
+          <table>
+              {{ form_post.as_p }}
+          </table>
+      <input type="submit" value="Post">
+      </form>
+      {% endif %}
     <h2> Blogger posts </h2>
-      {% for post in blogger.bloggerposts.all %}
-      <p><a href="{{ post.get_absolute_url }}">{{ post }}</p>
+      {% for post in blogger.bloggerposts.all|dictsortreversed:'timestamp' %}
+      <p><a href="{{ post.get_absolute_url }}">{{ post }}</a></p>
+      <p>{{ post.content }}</p>
+      <p>{{ post.timestamp }}</p>
       {% endfor %} 
 {% endblock %}

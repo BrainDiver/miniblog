@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     """
@@ -36,8 +37,8 @@ class Blogger(models.Model):
 
 class Post(models.Model):
     title=models.CharField(max_length=40, help_text='Enter title for this blog')
-    blogger=models.ForeignKey('Blogger', on_delete=models.CASCADE, related_name='bloggerposts')
-    categories=models.ManyToManyField('Category', related_name='category_post')
+    blogger=models.ForeignKey('Blogger', on_delete=models.CASCADE,related_name= "bloggerposts")
+    categories=models.ManyToManyField(Category, related_name='category_post')
     content=models.TextField()
     timestamp=models.DateTimeField(auto_now_add=True)
     
@@ -47,3 +48,13 @@ class Post(models.Model):
         return ", ".join([categories.name for categories in self.categories.all()[:3]])
     def get_absolute_url(self):
         return reverse('post-detail', args=[str(self.id)])
+
+class Coment(models.Model):
+    title=models.CharField(max_length= 20, help_text="Enter coment title")
+    content=models.TextField(null=True, blank=True)
+    timestamp=models.DateTimeField(auto_now_add=True)
+    post= models.ForeignKey('Post', on_delete=models.CASCADE, related_name='post_comment')
+    blogger= models.ForeignKey('Blogger', on_delete=models.CASCADE, related_name= 'blogger_coments')
+
+    def __str__(self):
+        return self.title
