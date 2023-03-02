@@ -21,7 +21,6 @@ class BloggerListView(generic.ListView):
     paginate_by=10
 class BloggerDetailView(generic.DetailView):
     model= Blogger
-
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         if str(self.request.user) == "AnonymousUser":
@@ -55,7 +54,6 @@ class PostListView(generic.ListView):
     paginate_by=10
 class PostDetailView(generic.DetailView):
     model=Post
-    paginate_by=10
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         get_post=Post.objects.get(id=self.kwargs['pk'])
@@ -82,6 +80,7 @@ class CategoryDetailView(generic.DetailView):
         context['category_posts']= genre.category_post.all()[:10]
         return context
 
+@login_required
 def search(request):
     if request.method == "POST":
         form= request.POST

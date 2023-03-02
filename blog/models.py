@@ -7,7 +7,8 @@ class Category(models.Model):
     Model representing an category.
     """
     name = models.CharField(max_length=20, help_text= "Enter a blog category")
-
+    class Meta:
+        ordering=['name']
     def __str__(self):
         """
         String for representing the Model object.
@@ -23,6 +24,8 @@ class Blogger(models.Model):
     email = models.EmailField(unique= True)
     date_of_birth = models.DateField(null= True, blank= True)
     about_blogger = models.TextField(max_length= 3000, help_text= 'information about bloger')
+    class Meta:
+        ordering=['nickname']
     def __str__(self):
         """
         String for representing the Model object.
@@ -36,12 +39,13 @@ class Blogger(models.Model):
         return reverse('blogger-detail', args=[str(self.id)])
 
 class Post(models.Model):
-    title=models.CharField(max_length=40, help_text='Enter title for this blog')
+    title=models.CharField(max_length=40, help_text='Enter title for this post')
     blogger=models.ForeignKey('Blogger', on_delete=models.CASCADE,related_name= "bloggerposts")
     categories=models.ManyToManyField(Category, related_name='category_post')
     content=models.TextField()
     timestamp=models.DateTimeField(auto_now_add=True)
-    
+    class Meta:
+        ordering=['-timestamp']
     def __str__(self):
         return self.title
     def display_category(self):

@@ -1,0 +1,240 @@
+.menu-btn{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  padding-top: 30px;
+  top: 0;
+  right:0;
+  width: 35px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.menu-btn > span,
+.menu-btn > span::before,
+.menu-btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #616161;
+  transition-duration: .25s;
+}
+.menu-btn > span::before {
+  content: '';
+  top: -8px;
+}
+.menu-btn > span::after {
+  content: '';
+  top: 8px;
+}
+
+.menubox{
+  display: block;
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  top: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: #ECEFF1;
+  box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+  transition-duration: .25s;
+  z-index: 10;
+}
+
+.menu-item {
+  display: block;
+  padding: 12px 24px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: .25s;
+}
+.menu-item:hover {
+  background-color: #CFD8DC;
+}
+
+
+#menu-toggle{
+  opacity: 0;
+}
+
+#menu-toggle:checked ~ .menu-btn > span{
+  transform: rotate(45deg);
+}
+#menu-toggle:checked ~ .menu-btn > span::before{
+  top: 0;
+  transform: rotate(0);
+}
+#menu-toggle:checked ~ .menu-btn > span::after{
+  top: 0;
+  transform: rotate(90deg);
+}
+#menu-toggle:checked ~ .menubox{
+  visibility: visible;
+  top: 0;
+}
+
+.topnav {
+   display: inline-block;
+   text-decoration: none;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   margin: 0 25px;
+   padding: 10px 25px;
+   font-size: 10px;
+   font-weight: bold;
+   font-family: 'Montserrat', sans-serif;
+   transition: 0.4s ease-in-out;             
+}
+
+.topnav li {
+  display: inline;
+}
+
+/*кнопка */
+.topnav a {
+   border-radius: 10px;
+   background: grey;
+   color: white;
+   margin: 0 24px;
+   padding: 8px 15px;
+   position: relative;
+   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+.topnav a:before, .topnav a:after {
+   content: "";
+   display: inline-block;
+   position: absolute;
+   top: calc(50% - 5px);
+   width: 4px;
+   height: 4px;
+   border-radius: 50%;
+   background: white;/*#F58262;*/
+   opacity: 0;
+   transition: .5s ease-in-out;
+}
+.topnav a:before {
+   left: 13px;
+}
+.topnav a:after {
+   right: 13px;
+}
+.topnav a:hover:before, .topnav a:hover:after {
+   opacity: 1;
+}
+
+.bodynav a {
+   background: #FFCC00;
+   color: black;
+   padding: 0px 10px;
+   position: relative;
+   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+.bodynav a:before, .bodynav a:after {
+   content: "";
+   display: inline-block;
+   position: absolute;
+   top: calc(50% - 5px);
+   width: 4px;
+   height: 4px;
+   border-radius: 50%;
+   background: white;/*#F58262;*/
+   opacity: 0;
+   transition: .5s ease-in-out;
+}
+.bodynav a:before {
+   left: 13px;
+}
+.bodynav a:after {
+   right: 13px;
+}
+.bodynav a:hover:before, .bodynav a:hover:after {
+   opacity: 1;
+}
+
+body {
+  max-width:1000px;
+  margin:auto;
+  min-width:150px;
+}
+a{
+  text-decoration:none;
+} 
+
+.a:active,a:hover {
+  background:#666666;
+  color:#ffffff;
+}
+.dropmenu {
+  display:none;
+}
+#dropmenu-toggle{
+  opacity: 0;
+}
+#dropmenu-toggle:checked ~ .dropmenu{
+  display: block;
+  top: 0;
+}
+
+.checkbox-btn {
+	display: inline-block;
+	margin: 0 5px 0 0;
+	user-select: none;
+	position: relative;
+        left: -25px;
+}
+.checkbox-btn input[type=checkbox] {
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+.checkbox-btn span {
+	display: inline-block;
+	cursor: pointer;
+	padding: 0px 10px;
+	line-height: 25px;
+	border: 1px solid #999;
+	border-radius: 4px;
+	transition: background 0.2s ease;
+}
+ 
+/* Checked */
+.checkbox-btn input[type=checkbox]:checked + span {
+	background: yellow;/*#ffe0a6;*/
+}
+ 
+/* Focus */
+.focused span {
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+ 
+/* Hover */
+.checkbox-btn:hover {
+	color: #666;
+}
+ 
+/* Active */
+.checkbox-btn input[type=checkbox]:active:not(:disabled) + span {
+	background: yellow;/*#d2c5ac;*/
+	color: #000;
+}
+ 
+/* Disabled */
+.checkbox-btn input[type=checkbox]:disabled + span {
+	background: yellow/*#efefef;*/
+	color: #666;
+	cursor: default;
+}
+.checkbox-btn input[type=checkbox]:checked:disabled + span {
+	background: yellow;/*#f7efdc;/*
+}

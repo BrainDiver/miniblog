@@ -1,0 +1,57 @@
+
+.topnav {
+    background-color: white;
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.topnav li {
+  display: inline;
+}
+
+.topnav a {
+  text-decoration: none;
+  font-family: sans-serif;
+  color: #5757a0;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: lavender;
+  border-bottom: 5px solid #5757a0;
+}
+
+p {
+  font-family: arial;
+}
+
+header h1 {
+  font-size: 70px;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #553c9a, #b393d3);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+media (max-width: 540px) {
+  #sidenav-open {
+    visibility: hidden;
+  }
+
+  #sidenav-open:target {
+    visibility: visible;
+  }
+}
+
+#sidenav-container {
+  display: grid;
+  grid: [stack] 1fr / min-content [stack] 1fr;
+  min-height: 100vh;
+}
+
+@media (max-width: 540px) {
+  #sidenav-container > * {
+    grid-area: stack;
+  }
+}

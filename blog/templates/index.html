@@ -1,7 +1,10 @@
 {% extends "base_generic.html" %}
 {% block content %}
-<h1>Welcome to my miniblog.</h1>
-<h4>On this page you can see the latest Posts, most popular bloggers and categories.</h4>
+<header>
+<h1>Miniblog</h1>
+<p>maded by BrainDiver</p>
+</header>
+<h4>Welcome. On this page you can see the latest Posts, popular bloggers and categories.</h4>
     <form action="{% url 'search' %}" method="post">
     {% csrf_token %}
        <label for="search_id">Search</label>
@@ -9,25 +12,31 @@
        <input type="submit" value="OK">
     </form>
     <table>
-        <caption> Bloggers </caption>
+        <h4><strong>Bloggers</strong> </h4>
         {% for blogger in bloggers %}
         <tr>
           <td><a href="{{ blogger.get_absolute_url }}">{{blogger.nickname}}</a></td>
         </tr>
-        {% endfor %}
-    </table>
-
-    <table>
-        <caption>Latest Posts</caption>
-        {% for post in posts %}
         <tr>
-          <td><a href="{{ post.get_absolute_url }}">{{ post }}</a></td>
+          <td>{{ blogger.about_blogger }}</td>
         </tr>
         {% endfor %}
     </table>
 
     <table>
-        <caption> Categories </caption>
+        <h4><strong>Latest Posts</strong></h4>
+        {% for post in posts %}
+        <tr>
+          <td><a href="{{ post.get_absolute_url }}">{{ post }}</a></td>
+        </tr>
+        <tr>
+          <td>{{ post.content }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <h4><strong> Categories</strong> </h4>
         {% for category in categories %}
         <tr>
           <td><a href="{{ category.get_absolute_url }}">{{ category }}</a></td>

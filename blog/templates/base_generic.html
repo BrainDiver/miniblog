@@ -10,27 +10,37 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
   <div class="container-fluid">
 
     <div class="row">
-      <div class="col-sm-2">
-      {% block sidebar %}
-      <ul class="sidebar-nav">
+      <div class="burger-menu">
+        <input id="menu-toggle" type="checkbox" />
+        <label class="menu-btn" for="menu-toggle">
+          <span></span>
+        </label>
+        
+      {% block sidenav %}
+      
+        <ul class="menubox">   
+        
+           <li><a class="menu-item" href="{% url 'posts'%}">Posts</a></li>
+           <li><a class="menu-item" href="{% url 'bloggers' %}">Bloggers</a></li>
+           <li><a class="menu-item" href="{% url 'categories' %}">Categories</a></li>
+           {% if user.is_authenticated %}
+           <li><a class="menu-item" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+           {% else %}
+           <li><a class="menu-item" href="{%url 'login' %}?next={{request.path}}">Login</a></li>
+           {% endif %}
+        </ul>
+        <ul class="topnav">
           <li><a href="{% url 'index'%}">Home</a></li>
-          <li><a href="{% url 'posts'%}">All Posts</a></li>
-          <li><a href="{% url 'bloggers' %}">All Bloggers</a></li>
-          <li><a href="{% url 'categories' %}">All categories</a></li>
-          {% if user.is_authenticated %}
-          <li>User:{{ user.get_username }}</li>
           <li><a href="{% url 'myblog' %}">My blog</a></li>
-          <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-          {% else %}
-          <li><a href="{%url 'login' %}?next={{request.path}}">Login</a></li>
-          {% endif %}
-      </ul>
+        </ul>      
       {% endblock %}
-      <div class="col-sm-10">
+      </div>
+      <div class="bodynav">
       {% block content %} {% endblock%}
       {% block pagination %}
         {% if is_paginated %}
