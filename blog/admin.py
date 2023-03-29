@@ -21,7 +21,7 @@ class BloggerAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display=('title', 'blogger', 'display_category', 'timestamp')
-    list_filtet=('blogger', 'display_category','timestamp', 'title')
+    list_filtet=('blogger', 'categories','timestamp', 'title')
 #unregister default User model
 admin.site.unregister(User)
 #register custom User model
